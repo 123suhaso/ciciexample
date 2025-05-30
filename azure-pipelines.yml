@@ -15,8 +15,7 @@ steps:
     sudo mv chromedriver /usr/local/bin/
     sudo chmod +x /usr/local/bin/chromedriver
   displayName: 'Install Chrome and ChromeDriver'
-
-- task: Maven@3
+  - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
@@ -25,12 +24,13 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean test'
+    goals: 'clean package'
 
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.war'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    SourceFolder: '$(System.DefaultWorkingDirectory)/target'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   inputs:
