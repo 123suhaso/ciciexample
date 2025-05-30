@@ -15,7 +15,8 @@ steps:
     sudo mv chromedriver /usr/local/bin/
     sudo chmod +x /usr/local/bin/chromedriver
   displayName: 'Install Chrome and ChromeDriver'
-  - task: Maven@3
+
+- task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
