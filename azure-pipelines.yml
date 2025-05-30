@@ -1,7 +1,7 @@
 # Maven
 # Build your Java project and run tests with Apache Maven.
 # Add steps that analyze code, save build artifac ts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# https://docs.microsoft.com/azure/devop s/pipelines/languages/java
 #i am build neww ci
 
 trigger:
