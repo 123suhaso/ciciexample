@@ -1,9 +1,3 @@
-# Maven
-# Build your Java p roject and run tests with Apache Maven.
-# Add steps that analyze code, save build artifac ts, deploy, and more:
-# https://docs.microsoft.com/azure/devop s/pipelines/languages/java
-#i am build neww ci
-
 trigger:
 - master
 
@@ -21,6 +15,7 @@ steps:
     sudo mv chromedriver /usr/local/bin/
     sudo chmod +x /usr/local/bin/chromedriver
   displayName: 'Install Chrome and ChromeDriver'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -30,11 +25,13 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    goals: 'clean test'
+
 - task: CopyFiles@2
   inputs:
     Contents: '**/*.war'
     TargetFolder: '$(build.artifactstagingdirectory)'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
